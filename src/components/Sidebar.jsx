@@ -11,7 +11,7 @@ function Sidebar() {
       <AppNav />
 
       <Outlet />
-      {/* <Outlet to="countries">List of countries</Outlet> */}
+
       <Footer />
     </div>
   );
