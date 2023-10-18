@@ -7,11 +7,11 @@ const formatDate = (date) =>
     year: "numeric",
   }).format(new Date(date));
 
-function CityItem({ city }) {
-  const { cityName, emoji, date, id } = city;
-  console.log(id);
+function CityItem({ city, key }) {
+  const { cityName, emoji, date } = city;
+
   return (
-    <li className={styles.cityItem} key={id}>
+    <li className={styles.cityItem} key={key}>
       <span className={styles.emoji}>{emoji}</span>
       <h3 className={styles.name}>{cityName}</h3>
       <time className={styles.date}>({formatDate(date)})</time>
