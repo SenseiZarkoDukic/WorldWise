@@ -50,7 +50,7 @@ function App() {
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="cities/:id" element={<City />} />
+          <Route path="cities/:id" element={<City cities={cities} />} />
           <Route
             path="countries"
             element={<CountryList cities={cities} isLoading={isLoading} />}
