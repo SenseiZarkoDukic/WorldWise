@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Product from "./Pages/Product";
 import Pricing from "./Pages/Pricing";
@@ -7,7 +8,6 @@ import AppLayout from "./Pages/AppLayout";
 import Login from "./Pages/Login";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
-import { useState, useEffect } from "react";
 
 const BASE_URL = "http://localhost:8000";
 
