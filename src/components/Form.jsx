@@ -17,10 +17,10 @@ function Form() {
   const navigate = useNavigate();
 
   const [cityName, setCityName] = useState("");
-  const [country, setCountry] = useState("");
+
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
-  console.log(navigate);
+
   return (
     <form className={styles.form}>
       <div className={styles.row}>
