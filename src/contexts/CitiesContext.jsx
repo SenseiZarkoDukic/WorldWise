@@ -42,6 +42,7 @@ function useCities() {
   if (context === undefined) {
     throw new Error("useCities must be used within a CitiesProvider");
   }
+  return context;
 }
 
 export { CitiesProvider, useCities };
