@@ -12,14 +12,15 @@ function Map() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
-  console.log(lat, lng);
+  const mapLat = searchParams.get("lat");
+  const mapLng = searchParams.get("lng");
+
   return (
     <div className={styles.mapContainer}>
       <MapContainer
-        center={mapPosition}
-        zoom={13}
+        // center={mapPosition}
+        center={[mapLat, mapLng]}
+        zoom={6}
         scrollWheelZoom={true}
         className={styles.map}
       >
