@@ -8,11 +8,19 @@ import BackButton from "./BackButton";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 
 export function convertToEmoji(countryCode) {
+  const flagemojiToPNG = (flag) => {
+    var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
+      .map((char) => String.fromCharCode(char - 127397).toLowerCase())
+      .join("");
+    return (
+      <img src={`https://flagcdn.com/24x18/${countryCode}.png`} alt="flag" />
+    );
+  };
   const codePoints = countryCode
     .toUpperCase()
     .split("")
     .map((char) => 127397 + char.charCodeAt());
-  return String.fromCodePoint(...codePoints);
+  return flagemojiToPNG(String.fromCodePoint(...codePoints));
 }
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
@@ -25,6 +33,7 @@ function Form() {
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
+  const [emoji, setEmoji] = useState("");
 
   useEffect(() => {
     async function fetchCityData() {
@@ -35,6 +44,7 @@ function Form() {
         console.log(data);
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName);
+        setEmoji(convertToEmoji(data.countryCode));
       } catch (err) {
       } finally {
         setIsLoadingGeocoding(false);
@@ -52,7 +62,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
