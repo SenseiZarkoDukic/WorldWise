@@ -8,7 +8,6 @@ import BackButton from "./BackButton";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import Message from "./Message";
 import Spinner from "./Spinner";
-import { flagemojiToPNG } from "..//contexts/CitiesContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -58,6 +57,18 @@ function Form() {
     }
     fetchCityData();
   }, [lat, lng]);
+
+  function flagemojiToPNG(flag) {
+    var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
+      .map((char) => String.fromCharCode(char - 127397).toLowerCase())
+      .join("");
+    return (
+      <img
+        src={countryCode ? `https://flagcdn.com/24x18/${countryCode}.png` : ""}
+        alt="flag"
+      />
+    );
+  }
 
   if (isLoadingGeocoding) return <Spinner />;
   if (!lat && !lng)
