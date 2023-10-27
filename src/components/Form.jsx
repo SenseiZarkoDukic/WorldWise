@@ -8,6 +8,7 @@ import BackButton from "./BackButton";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import Message from "./Message";
 import Spinner from "./Spinner";
+import { flagemojiToPNG } from "..//contexts/CitiesContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -16,18 +17,6 @@ export function convertToEmoji(countryCode) {
     .map((char) => 127397 + char.charCodeAt());
   return String.fromCodePoint(...codePoints);
 }
-
-const flagemojiToPNG = (flag) => {
-  var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
-    .map((char) => String.fromCharCode(char - 127397).toLowerCase())
-    .join("");
-  return (
-    <img
-      src={countryCode ? `https://flagcdn.com/24x18/${countryCode}.png` : ""}
-      alt="flag"
-    />
-  );
-};
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
@@ -71,7 +60,10 @@ function Form() {
   }, [lat, lng]);
 
   if (isLoadingGeocoding) return <Spinner />;
-
+  if (!lat && !lng)
+    return (
+      <Message type="info" message="Start by clicking somewhere on the map" />
+    );
   if (geocodingError) return <Message type="error" message={geocodingError} />;
   return (
     <form className={styles.form}>
@@ -82,9 +74,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        <span className={styles.flag}>
-          {emoji ? flagemojiToPNG(emoji) : ""}
-        </span>
+        <span className={styles.flag}>{flagemojiToPNG(emoji)}</span>
       </div>
 
       <div className={styles.row}>
