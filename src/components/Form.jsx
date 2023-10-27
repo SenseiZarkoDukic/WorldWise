@@ -22,7 +22,10 @@ const flagemojiToPNG = (flag) => {
     .map((char) => String.fromCharCode(char - 127397).toLowerCase())
     .join("");
   return (
-    <img src={`https://flagcdn.com/24x18/${countryCode}.png`} alt="flag" />
+    <img
+      src={countryCode ? `https://flagcdn.com/24x18/${countryCode}.png` : ""}
+      alt="flag"
+    />
   );
 };
 
@@ -40,6 +43,8 @@ function Form() {
   const [geocodingError, setGeocodingError] = useState("");
 
   useEffect(() => {
+    if (!lat && !lng) return;
+
     async function fetchCityData() {
       try {
         setIsLoadingGeocoding(true);
@@ -77,7 +82,9 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        <span className={styles.flag}>{flagemojiToPNG(emoji)}</span>
+        <span className={styles.flag}>
+          {emoji ? flagemojiToPNG(emoji) : ""}
+        </span>
       </div>
 
       <div className={styles.row}>
