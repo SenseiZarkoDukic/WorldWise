@@ -39,6 +39,18 @@ function CitiesProvider({ children }) {
       setIsLoading(false);
     }
   }
+
+  function flagemojiToPNG(flag) {
+    var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
+      .map((char) => String.fromCharCode(char - 127397).toLowerCase())
+      .join("");
+    return (
+      <img
+        src={countryCode ? `https://flagcdn.com/24x18/${countryCode}.png` : ""}
+        alt="flag"
+      />
+    );
+  }
   return (
     <CitiesContext.Provider
       value={{
@@ -46,6 +58,7 @@ function CitiesProvider({ children }) {
         isLoading,
         currentCity,
         getCity,
+        flagemojiToPNG,
       }}
     >
       {children}
