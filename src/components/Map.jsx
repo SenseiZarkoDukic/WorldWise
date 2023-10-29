@@ -15,7 +15,7 @@ import Button from "./Button";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 
 function Map() {
-  const { cities } = useCities();
+  const { cities, flagemojiToPNG } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const {
     position: geolocationPosition,
@@ -57,7 +57,7 @@ function Map() {
             key={city.id}
           >
             <Popup>
-              <span>{city.emoji}</span>
+              <span>{flagemojiToPNG(city.emoji)}</span>
               <span>{city.cityName}</span>
             </Popup>
           </Marker>

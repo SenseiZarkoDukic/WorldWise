@@ -15,7 +15,7 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
-  const { getCity, currentCity, isLoading } = useCities();
+  const { getCity, currentCity, isLoading, flagemojiToPNG } = useCities();
   const { id } = useParams();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function City() {
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{emoji}</span> {cityName}
+          <span>{flagemojiToPNG(emoji)}</span> {cityName}
         </h3>
       </div>
 
