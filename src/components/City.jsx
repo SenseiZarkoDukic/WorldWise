@@ -30,7 +30,9 @@ function City() {
   //   notes: "My favorite city so far!",
   // };
 
-  const { cityName, emoji, date, notes } = currentCity;
+  let { cityName, emoji, date, notes } = currentCity;
+  if (!emoji) return null;
+  emoji = flagemojiToPNG(emoji);
 
   if (isLoading) return <Spinner />;
 
@@ -39,7 +41,7 @@ function City() {
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{flagemojiToPNG(emoji)}</span> {cityName}
+          <span>{emoji}</span> {cityName}
         </h3>
       </div>
 
