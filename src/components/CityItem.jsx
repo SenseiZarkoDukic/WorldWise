@@ -10,7 +10,7 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { currentCity } = useCities();
+  const { currentCity, flagemojiToPNG } = useCities();
   const { cityName, emoji, date, id, position } = city;
 
   return (
@@ -21,7 +21,7 @@ function CityItem({ city }) {
           currentCity.id === id ? styles["cityItem--active"] : ""
         }`}
       >
-        <span className={styles.emoji}>{emoji}</span>
+        <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>({formatDate(date)})</time>
         <button className={styles.deleteBtn}>&times;</button>
