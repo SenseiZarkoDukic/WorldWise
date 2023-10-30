@@ -1,6 +1,7 @@
 import styles from "./CityItem.module.css";
 import { Link } from "react-router-dom";
 import { useCities } from "../contexts/CitiesContext";
+import { useNavigate } from "react-router-dom";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -10,9 +11,17 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { currentCity, flagemojiToPNG } = useCities();
+  const { currentCity, flagemojiToPNG, deleteCity, setCurrentCity } =
+    useCities();
   const { cityName, emoji, date, id, position } = city;
+  const navigate = useNavigate();
 
+  async function handleDeleteCity(e) {
+    e.preventDefault();
+
+    await deleteCity(id);
+    navigate("../cities");
+  }
   return (
     <li>
       <Link
@@ -24,7 +33,9 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>({formatDate(date)})</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleDeleteCity}>
+          &times;
+        </button>
       </Link>
     </li>
   );
