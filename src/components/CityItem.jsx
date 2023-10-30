@@ -11,8 +11,7 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { currentCity, flagemojiToPNG, deleteCity, setCurrentCity } =
-    useCities();
+  const { currentCity, flagemojiToPNG, deleteCity } = useCities();
   const { cityName, emoji, date, id, position } = city;
   const navigate = useNavigate();
 
@@ -20,7 +19,6 @@ function CityItem({ city }) {
     e.preventDefault();
 
     await deleteCity(id);
-    navigate("../cities");
   }
   return (
     <li>
