@@ -40,12 +40,14 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
     case "cities/deleted":
       return {
         ...state,
         isLoading: false,
         cities: state.cities.filter((city) => city.id !== action.payload),
+        currentCity: {},
       };
 
     case "rejected":
@@ -61,7 +63,7 @@ function reducer(state, action) {
 }
 
 function CitiesProvider({ children }) {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -84,8 +86,10 @@ function CitiesProvider({ children }) {
   }, []);
 
   async function getCity(id) {
+    if (Number(id) === currentCity.id) return;
+
+    dispatch({ type: "loading" });
     try {
-      dispatch({ type: "loading" });
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
       dispatch({ type: "city/loaded", payload: data });
@@ -97,8 +101,8 @@ function CitiesProvider({ children }) {
     }
   }
   async function createCity(newCity) {
+    dispatch({ type: "loading" });
     try {
-      dispatch({ type: "loading" });
       const res = await fetch(`${BASE_URL}/cities/`, {
         method: "POST",
         headers: {
@@ -110,19 +114,25 @@ function CitiesProvider({ children }) {
       const data = await res.json();
       dispatch({ type: "cities/created", payload: data });
     } catch {
-      alert("There was an error creating city...");
+      dispatch({
+        type: "rejecteed",
+        payload: "There was an error creating the city...",
+      });
     }
   }
   async function deleteCity(id) {
+    dispatch({ type: "loading" });
     try {
-      dispatch({ type: "loading" });
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
       });
 
       dispatch({ type: "cities/deleted", payload: id });
     } catch {
-      alert("There was an error deleting city...");
+      dispatch({
+        type: "rejecteed",
+        payload: "There was an error deleting city...",
+      });
     }
   }
 
@@ -147,6 +157,7 @@ function CitiesProvider({ children }) {
         flagemojiToPNG,
         createCity,
         deleteCity,
+        error,
       }}
     >
       {children}
