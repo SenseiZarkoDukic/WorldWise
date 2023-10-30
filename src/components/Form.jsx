@@ -32,8 +32,8 @@ function Form() {
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
-  const { flagemojiToPNG } = useCities();
-
+  const { flagemojiToPNG, createCity } = useCities();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!lat && !lng) return;
 
@@ -64,7 +64,17 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(cityName, country, date, notes);
+    if (!cityName || !date) return;
+    const newCity = {
+      cityName,
+      country,
+      date,
+      notes,
+      emoji,
+      position: { lat, lng },
+    };
+    createCity(newCity);
+    navigate("../cities");
   }
 
   if (isLoadingGeocoding) return <Spinner />;

@@ -39,6 +39,25 @@ function CitiesProvider({ children }) {
       setIsLoading(false);
     }
   }
+  async function createCity(newCity) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCity),
+      });
+
+      const data = await res.json();
+      console.log(data);
+    } catch {
+      alert("There was an error loading data...");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   function flagemojiToPNG(flag) {
     var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
@@ -59,6 +78,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         flagemojiToPNG,
+        createCity,
       }}
     >
       {children}

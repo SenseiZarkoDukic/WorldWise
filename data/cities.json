@@ -35,6 +35,90 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Belgrade",
+      "country": "Serbia",
+      "date": "2023-10-30T14:35:05.425Z",
+      "notes": "Najbolji! ❤️",
+      "emoji": "🇷🇸",
+      "position": {
+        "lat": "44.72795278557755",
+        "lng": "20.456542968750004"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Belgrade",
+      "country": "Serbia",
+      "date": "2023-10-30T14:36:00.460Z",
+      "notes": "TOP! ❤️",
+      "emoji": "🇷🇸",
+      "position": {
+        "lat": "44.7436220564643",
+        "lng": "20.500488281250004"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Belchite",
+      "country": "Spain",
+      "date": "2023-10-30T14:37:28.156Z",
+      "notes": "Nice! :)",
+      "emoji": "🇪🇸",
+      "position": {
+        "lat": "41.358071089820214",
+        "lng": "-0.6811523437500001"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Cantabrian Sea",
+      "country": "Spain",
+      "date": "2023-10-30T14:38:13.163Z",
+      "notes": "Sunny! ☀️",
+      "emoji": "🇪🇸",
+      "position": {
+        "lat": "43.35547106794355",
+        "lng": "-2.1972656250000004"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Mios",
+      "country": "France",
+      "date": "2023-10-30T14:39:11.437Z",
+      "notes": "MMMmm! :)",
+      "emoji": "🇫🇷",
+      "position": {
+        "lat": "44.666535403444236",
+        "lng": "-0.8569335937500001"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Mios",
+      "country": "France",
+      "date": "2023-10-30T14:39:45.529Z",
+      "notes": "Mmmmmm!!!",
+      "emoji": "🇫🇷",
+      "position": {
+        "lat": "44.666535403444236",
+        "lng": "-0.8569335937500001"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Thorame-Haute",
+      "country": "France",
+      "date": "2023-10-30T14:40:17.041Z",
+      "notes": "Funny!!! :D",
+      "emoji": "🇫🇷",
+      "position": {
+        "lat": "44.08397150923681",
+        "lng": "6.635742187500001"
+      },
+      "id": 98443204
     }
   ]
 }
