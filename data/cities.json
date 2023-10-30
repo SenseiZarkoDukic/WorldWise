@@ -119,6 +119,30 @@
         "lng": "6.635742187500001"
       },
       "id": 98443204
+    },
+    {
+      "cityName": "Orcemont",
+      "country": "France",
+      "date": "2023-10-30T14:45:15.716Z",
+      "notes": "Ok.",
+      "emoji": "🇫🇷",
+      "position": {
+        "lat": "48.604540126604974",
+        "lng": "1.8017578125000002"
+      },
+      "id": 98443205
+    },
+    {
+      "cityName": "Domodedovo",
+      "country": "Russian Federation (the)",
+      "date": "2023-10-30T14:56:33.827Z",
+      "notes": "Nice and big airport!",
+      "emoji": "🇷🇺",
+      "position": {
+        "lat": "55.38415635072253",
+        "lng": "37.705078125"
+      },
+      "id": 98443206
     }
   ]
 }
