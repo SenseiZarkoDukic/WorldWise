@@ -24,6 +24,7 @@ const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
   const [lat, lng] = useUrlPosition();
+  const navigate = useNavigate();
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState("");
@@ -32,8 +33,8 @@ function Form() {
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
-  const { flagemojiToPNG, createCity } = useCities();
-  const navigate = useNavigate();
+  const { flagemojiToPNG, createCity, isLoading } = useCities();
+
   useEffect(() => {
     if (!lat && !lng) return;
 
@@ -43,7 +44,6 @@ function Form() {
         setGeocodingError("");
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
-        console.log(data);
 
         if (!data.countryCode)
           throw new Error(
@@ -62,7 +62,7 @@ function Form() {
     fetchCityData();
   }, [lat, lng]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!cityName || !date) return;
     const newCity = {
@@ -73,7 +73,7 @@ function Form() {
       emoji,
       position: { lat, lng },
     };
-    createCity(newCity);
+    await createCity(newCity);
     navigate("../cities");
   }
 
@@ -84,7 +84,7 @@ function Form() {
     );
   if (geocodingError) return <Message type="error" message={geocodingError} />;
   return (
-    <form className={styles.form}>
+    <form className={`${styles.form} ${isLoading ? styles.loading : ""}`}>
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
