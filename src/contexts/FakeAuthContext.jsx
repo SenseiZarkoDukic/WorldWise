@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from "react";
-import User from "../components/User";
 
 const AuthContext = createContext();
 const initialState = {
@@ -48,6 +47,7 @@ function AuthProvider({ children }) {
   function logout() {
     dispatch({ type: "logout" });
   }
+  console.log(user);
 
   return (
     <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
